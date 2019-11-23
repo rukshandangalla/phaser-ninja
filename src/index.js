@@ -22,25 +22,77 @@ function preload() {
 
 function create() {
   const ninja = this.add.sprite(500, 300, 'ninja');
-  // var frameNames = this.textures.get('ninja').getFrameNames();
+  ninja.setScale(0.5);
+  
+  var frameNames = this.textures.get('ninja').getFrameNames();
+  console.log(frameNames);
 
-  this.anims.create({
+  makeAnims(this);
+  //ninja.play('jump');
+  ninja.play('run');
+}
+
+function makeAnims(context) {
+  context.anims.create({
     key: 'attack',
-    frames: [
-      { key: 'ninja', frame: 'Attack__000.png' }, 
-      { key: 'ninja', frame: 'Attack__001.png' },
-      { key: 'ninja', frame: 'Attack__002.png' }, 
-      { key: 'ninja', frame: 'Attack__003.png' },
-      { key: 'ninja', frame: 'Attack__004.png' }, 
-      { key: 'ninja', frame: 'Attack__005.png' },
-      { key: 'ninja', frame: 'Attack__006.png' }, 
-      { key: 'ninja', frame: 'Attack__007.png' },
-      { key: 'ninja', frame: 'Attack__008.png' }, 
-      { key: 'ninja', frame: 'Attack__009.png' },
-    ],
+    frames: context.anims.generateFrameNames('ninja', { start: 0, end: 8, zeroPad: 3, prefix: 'Attack__', suffix: '.png' }),
     frameRate: 8,
     repeat: -1
   });
 
-  ninja.play('attack');
+  context.anims.create({
+    key: 'climb',
+    frames: context.anims.generateFrameNames('ninja', { start: 0, end: 8, zeroPad: 3, prefix: 'Climb_', suffix: '.png' }),
+    frameRate: 8,
+    repeat: -1
+  });
+
+  context.anims.create({
+    key: 'attack',
+    frames: context.anims.generateFrameNames('ninja', { start: 0, end: 8, zeroPad: 3, prefix: 'Attack__', suffix: '.png' }),
+    frameRate: 8,
+    repeat: -1
+  });
+
+  context.anims.create({
+    key: 'dead',
+    frames: context.anims.generateFrameNames('ninja', { start: 0, end: 8, zeroPad: 3, prefix: 'Dead__', suffix: '.png' }),
+    frameRate: 8,
+    repeat: -1
+  });
+
+  context.anims.create({
+    key: 'glide',
+    frames: context.anims.generateFrameNames('ninja', { start: 0, end: 8, zeroPad: 3, prefix: 'Glide_', suffix: '.png' }),
+    frameRate: 8,
+    repeat: -1
+  });
+
+  context.anims.create({
+    key: 'Idle',
+    frames: context.anims.generateFrameNames('ninja', { start: 0, end: 8, zeroPad: 3, prefix: 'Idle__', suffix: '.png' }),
+    frameRate: 8,
+    repeat: -1
+  });
+
+  context.anims.create({
+    key: 'jump',
+    frames: context.anims.generateFrameNames('ninja', { start: 0, end: 8, zeroPad: 3, prefix: 'Jump__', suffix: '.png' }),
+    frameRate: 8,
+    repeat: -1
+  });
+
+  context.anims.create({
+    key: 'jump_attack',
+    frames: context.anims.generateFrameNames('ninja', { start: 0, end: 8, zeroPad: 3, prefix: 'Jump_Attack__', suffix: '.png' }),
+    frameRate: 8,
+    repeat: -1
+  });
+
+  context.anims.create({
+    key: 'run',
+    frames: context.anims.generateFrameNames('ninja', { start: 0, end: 8, zeroPad: 3, prefix: 'Run__', suffix: '.png' }),
+    frameRate: 8,
+    repeat: -1
+  });
 }
