@@ -3,9 +3,13 @@ import Phaser from 'phaser';
 import tileImg from './assets/images/ground_tile.png';
 import ninjaImg from './assets/images/ninja.png';
 import ninjaJson from './assets/images/ninja.json';
+import crossImg from './assets/images/cross.png';
+import buttonImg from './assets/images/button.png';
+import hiddenImg from './assets/images/hidden.png';
 
 import { AlignGrid } from './align.grid';
 import { Align } from './align';
+import { GamePad } from './game.pad';
 
 const config = {
   type: Phaser.AUTO,
@@ -19,7 +23,7 @@ const config = {
   physics: {
     default: 'arcade',
     arcade: {
-      debug: false
+      debug: true
     }
   }
 };
@@ -30,6 +34,9 @@ let tileGroup;
 function preload() {
   this.load.atlas('ninja', ninjaImg, ninjaJson);
   this.load.image('tile', tileImg);
+  this.load.image('cross', crossImg);
+  this.load.image('button', buttonImg);
+  this.load.image('hidden', hiddenImg);
 }
 
 function create() {
@@ -49,16 +56,20 @@ function create() {
 
   makeAnims(this);
 
-  const aGrid = new AlignGrid({ scene: this, rows: 11, cols: 11, gameWidth: 800, gameHeight: 600 });
-  // aGrid.showNumbers();
+  const aGrid = new AlignGrid({ scene: this, rows: 11, cols: 11, gameWidth: 800, gameHeight: 800 });
+  aGrid.showNumbers();
 
-  makeFloor(88, 98, 'tile', aGrid, this);
+  //makeFloor(48, 49, 'tile', aGrid, this);
+  makeFloor(77, 87, 'tile', aGrid, this);
 
   // ninja.play('jump');
   ninja.play('idle');
 
   ninja.setGravityY(200);
   this.physics.add.collider(ninja, tileGroup);
+
+  const gamePad = new GamePad({ scene: this, grid: aGrid, game });
+  gamePad.y = 580;
 }
 
 function placeBlock(pos, key, grid, context) {
