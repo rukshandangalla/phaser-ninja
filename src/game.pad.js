@@ -36,6 +36,11 @@ export class GamePad extends UIBlock {
     btn_right.setInteractive();
     btn_left.setInteractive();
 
+    btn_up.alpha = 0.1;
+    btn_down.alpha = 0.1;
+    btn_right.alpha = 0.1;
+    btn_left.alpha = 0.1;
+
     btn_up.on('pointerdown', this.goUp.bind(this));
     btn_down.on('pointerdown', this.goDown.bind(this));
     btn_right.on('pointerdown', this.goRight.bind(this));

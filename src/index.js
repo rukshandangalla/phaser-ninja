@@ -69,7 +69,7 @@ function create() {
   this.physics.add.collider(ninja, tileGroup);
 
   const gamePad = new GamePad({ scene: this, grid: aGrid, game });
-  gamePad.y = 580;
+  aGrid.placeAtIndex(100, gamePad);
 }
 
 function placeBlock(pos, key, grid, context) {
